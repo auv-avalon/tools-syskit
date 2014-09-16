@@ -315,7 +315,8 @@ module Syskit
                         end
                         break
                     end
-                    raise ArgumentError, "trying to change port information for #{task}.#{port_name} after done_port_info has been called"
+                    #binding.pry
+                    #raise ArgumentError, "trying to change port information for #{task}.#{port_name} after done_port_info has been called for #{}"
                 end
 
                 if !has_information_for_port?(task, port_name)
