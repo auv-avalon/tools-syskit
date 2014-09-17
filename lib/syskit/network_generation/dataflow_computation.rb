@@ -315,8 +315,7 @@ module Syskit
                         end
                         break
                     end
-                    #binding.pry
-                    #raise ArgumentError, "trying to change port information for #{task}.#{port_name} after done_port_info has been called for #{}"
+                    ::Robot::warn "trying to change port information for #{task}.#{port_name} after done_port_info has been called"
                 end
 
                 if !has_information_for_port?(task, port_name)
