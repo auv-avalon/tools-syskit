@@ -330,8 +330,13 @@ module Syskit
                     end
                 end
                 data_readers.each do |reader|
+                    begin
                     if reader.connected?
                         reader.disconnect
+                    end
+                    rescue Exception => e
+                        ::Robot.warn "Got error here, ignoring it"
+                        ::Robot.warn e
                     end
                 end
             end
