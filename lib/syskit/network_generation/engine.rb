@@ -24,9 +24,7 @@ module Syskit
             # This is valid only during resolution
             #
             # It is alised to {#plan} for backward compatibility reasons
-            attr_accessor :work_plan
-            # The robot on which the software is running
-            attr_reader :robot
+            attr_reader :work_plan
             # A mapping from requirement tasks in the real plan to the tasks
             # that have been instantiated in the working plan
             #
@@ -1061,7 +1059,7 @@ module Syskit
             # This method is the entry point for the heavy-lifting, computing
             # the transaction that adapts the current {#real_plan} to the
             # network that provides all the InstanceRequirements
-            def compute_adapted_network(work_plan, requirements, options = Hash.new)
+            def compute_adapted_network(work_plan, options = Hash.new)
                 @timepoints ||= []
 
                 @work_plan = work_plan
@@ -1134,6 +1132,10 @@ module Syskit
                 end
             end
 
+            def prepare_resolve(options = Hash.new)
+                work_plan = Roby::Transaction.new(real_plan)
+                compute_adapted_network(work_plan, options)
+            end
             # Generate the deployment according to the current requirements, and
             # merges it into the current plan
             #
@@ -1160,9 +1162,11 @@ module Syskit
             def resolve(options = Hash.new)
 	    	return if disabled?
 
+
                 @timepoints = []
-                work_plan = Roby::Transaction.new(real_plan)
-                compute_adapted_network(work_plan, options)
+                if !work_plan.instance_of? Roby::Transaction
+                    prepare_resolve(options)
+                end
                 work_plan.commit_transaction
 
             rescue Exception => e
