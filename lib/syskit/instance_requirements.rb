@@ -602,6 +602,14 @@ module Syskit
                 @di = nil
             end
 
+            #
+            # @param [DependencyInjection] di the new DI information
+            # @return [void]
+            def push_dependency_injection(di)
+                dependency_injection_context.push(di)
+                @di = nil
+            end
+
             # Returns the DI object used by this instance requirements task
             #
             # @return [DependencyInjection]
