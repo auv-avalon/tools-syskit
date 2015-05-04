@@ -30,10 +30,10 @@ module Syskit
             # For instance ['default', 'left_camera'] will apply the 'default'
             # section of config/orogen/orogen_project::TaskClassName.yml and
             # then override with the 'left_camera' section of the same file
-            argument :conf, :default => ['default']
+            argument :conf, :default => ['default'], :type => :conf
             # The name of the remote task context, i.e. the name under which it
             # can be resolved by Orocos.name_service
-            argument :orocos_name
+            argument :orocos_name, :type => :string
 
             class << self
                 # A name => [orogen_deployed_task_context, current_conf] mapping that says if

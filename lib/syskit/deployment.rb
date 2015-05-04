@@ -18,11 +18,11 @@ module Syskit
             extend Models::Deployment
             extend Logger::Hierarchy
 
-            argument :process_name, :default => from(:model).deployment_name
-            argument :log, :default => true
-            argument :on, :default => 'localhost'
-            argument :name_mappings, :default => nil
-            argument :spawn_options, :default=> nil
+            argument :process_name, :default => from(:model).deployment_name, :type => :string
+            argument :log, :default => true, :type => :bool
+            argument :on, :default => 'localhost', :type => :string
+            argument :name_mappings, :default => nil, :type => :ignore
+            argument :spawn_options, :default=> nil, :type => :ignore
 
             # An object describing the underlying pocess server
             #

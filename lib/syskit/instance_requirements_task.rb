@@ -8,11 +8,11 @@ module Syskit
 
         # If this planning task has been created through an action object, this
         # is it
-        argument :action_model, :default => nil
+        argument :action_model, :default => nil, :type => :ignore
 
         # If this planning task has been created through an action object, this
         # contains the arguments that were passed to it
-        argument :action_arguments, :default => nil
+        argument :action_arguments, :default => nil, :type => :ignore
 
         # The instance that should be added to the network
         #
